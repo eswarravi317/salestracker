@@ -96,12 +96,14 @@ def dashboard():
         cursor.execute('SELECT * FROM outlet WHERE outlet_id = % s', (session['email'], ))
         outlet = cursor.fetchone()
 
+        outlet_location = outlet['outlet_location']
         outlet_establishment_year = outlet['outlet_year']
         outlet_size = outlet['outlet_size_id']
         outlet_location_type = outlet['outlet_location_type_id']
         outlet_type = outlet['outlet_type_id']
 
         values = []
+        max_predict = []
 
         for item in product:
             datas = {}
@@ -112,7 +114,7 @@ def dashboard():
             if len(available_data):
                 cursor.execute('SELECT sum(quantity) as weight, min(total_mrp) as total_mrp FROM orders WHERE provider_id = % s and name = % s', (session['email'], item['name']))
                 weight_mrp = cursor.fetchone()
-                item_weight = weight_mrp['weight']
+                item_weight = (weight_mrp['weight']/1000)
                 item_fat_content= float(item['fat_id'])
                 item_visibility = 0
                 if item['visibility'] == "High":
@@ -123,7 +125,7 @@ def dashboard():
                     item_visibility = float(random.randint(0, 49)/1000)
                 item_type= float(item['type_id'])
                 item_mrp = weight_mrp['total_mrp']
-                
+
                 X= np.array([[item_weight, item_fat_content, item_visibility, item_type, item_mrp, outlet_establishment_year, outlet_size, outlet_location_type, outlet_type]])
                 scaler_path = r'D:\Learning\SalesTracker\models\sc.sav'
                 sc=joblib.load(scaler_path)
@@ -132,9 +134,25 @@ def dashboard():
                 model= joblib.load(model_path)
                 Y_pred=model.predict(X_std)
                 predict = round(abs(float(Y_pred)))
+                max_predict.append(predict)
                 
                 datas = {'name': item['name'], 'actual': item_mrp, 'predict': predict}
                 values.append(datas)
+        
+        tbf = (max(max_predict)*3)/4
+        obt = max(max_predict)/2
+        obf = max(max_predict)/4
+
+        for value in values:
+            if(int(value['predict'])>tbf):
+                value['predict'] = "Excellent"
+            elif(int(value['predict'])<=tbf and int(value['predict'])>obt):
+                value['predict'] = "Good"
+            elif(int(value['predict'])<=obt and int(value['predict'])>obf):
+                value['predict'] = "Moderate"
+            else:
+                value['predict'] = "Bad"
+
         if product and outlet and len(values):
             return render_template('dashboard.html', account = outlet, data = values)
         else:
