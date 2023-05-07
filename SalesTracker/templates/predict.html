@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict | Sales Tracker</title>
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <link rel="stylesheet" href="../static/css/predict.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+</head>
+<body>
+    <!-- <h1>Dashboard</h1>
+    <h3>Logged in : <strong>{{session.name}} | <a href="{{ url_for('logout') }}"> Logout</h3> -->
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">SalesTracker</h3>
+            <label for="sidebar-toggle" class="ti-menu-alt" style="cursor: pointer;"></label>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="/dashboard" id="dashboard_btn" onclick=showDashboard()>
+                        <span class="ti-home"></span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/statistics" id="statistics_btn" onclick=showStatistics()>
+                        <span class="ti-pulse"></span>
+                        <span>Statistics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/billing" class="help_btn" onclick=showBilling()>
+                        <span class="ti-shopping-cart-full"></span>
+                        <span>Billing</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/predict" class="predict_btn" onclick=showPredict()>
+                        <span class="ti-bar-chart-alt"></span>
+                        <span>Predict</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/help" class="help_btn" onclick=showPredict()>
+                        <span class="ti-help"></span>
+                        <span>Help</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/account" class="account_btn" onclick=showAccount()>
+                        <span class="ti-settings"></span>
+                        <span>Account</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <span class="ti-shift-right"></span>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-content">
+        <header>
+            <div class="search-wrapper">
+                <span class="ti-search"></span>
+                <input type="search" placeholder="Search">
+            </div>
+        </header>
+        <main>
+            <h2 class="dash-title">Predict</h2>
+            <form class="predict-form" action="/prediction" method="post">
+                <div class="form-div">
+                    <label>Item Weight</label>
+                    <input type="text" name="item_weight" required="required">
+                </div>
+                <div class="form-div">
+                    <label>Item Fat Content</label>
+                    <select name="item_fat_content" required="required">
+                        <option value="" selected hidden>--SELECT--</option>
+                        <option value="1">Low Fat</option>
+                        <option value="2">Regular</option>
+                        <option value="0">High Fat</option>
+                    </select>
+                </div>
+                <div class="form-div">
+                    <label>Item Visibility</label>
+                    <select name="item_visibility" required>
+                        <option value="" hidden>--SELECT--</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+                <div class="form-div">
+                    <label>Item Type</label>
+                    <select name="item_type" required="required">
+                        <option value="" selected hidden>--SELECT--</option>
+                        <option value="0">Baking Goods</option>
+                        <option value="1">Breads</option>
+                        <option value="2">Breakfast</option>
+                        <option value="3">Canned</option>
+                        <option value="4">Dairy</option>
+                        <option value="5">Frozen Foods</option>
+                        <option value="6">Fruits and Vegetables</option>
+                        <option value="7">Hard Drinks</option>
+                        <option value="8">Health and Hygiene</option>
+                        <option value="9">Household</option>
+                        <option value="10">Meat</option>
+                        <option value="11">Others</option>
+                        <option value="12">Seafood</option>
+                        <option value="13">Snack Foods</option>
+                        <option value="14">Soft Drinks</option>
+                        <option value="15">Starchy Foods</option>
+                    </select>
+                </div>
+                <div class="form-div">
+                    <label>Item MRP</label>
+                    <input type="text" name="item_mrp" required>
+                </div>
+                <div class="form-div">
+                    <label>Outlet Establishment Year</label>
+                    <input type="text" name="outlet_establishment_year" required>
+                </div>
+                <div class="form-div">
+                    <label>Outlet Size</label>
+                    <select name="outlet_size" required="required">
+                        <option value="" selected hidden>--SELECT--</option>
+                        <option value="0">High</option>
+                        <option value="1">Medium</option>
+                        <option value="2">Small</option>
+                    </select>
+                </div>
+                <div class="form-div">
+                    <label>Outlet Location Type</label>
+                    <select name="outlet_location_type" required="required">
+                        <option value="" selected hidden>--SELECT--</option>
+                        <option value="0">Tier 1</option>
+                        <option value="1">Tier 2</option>
+                        <option value="2">Tier 3</option>
+                    </select>
+                </div>
+                <div class="form-div">
+                    <label>Outlet Type</label>
+                    <select name="outlet_type" required="required">
+                        <option value="" selected hidden>--SELECT--</option>
+                        <option value="0">Grocery</option>
+                        <option value="1">Supermarket</option>
+                    </select>
+                </div>
+                <div class="form-div-submit">
+                    <input type="reset" value="Reset">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+.help-inner h3 {
+    background-color: rebeccapurple;
+    color: white;
+    padding: 10px;
+}
+.help-inner-content form {
+    padding: 10px;
+}
+.help-inner-content form input {
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 0;
+    font-size: 1rem;
+    margin: 10px 0;
+}
+.help-inner-content form input[type='submit'] {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.result-msg {
+    /* color: white;
+    background-color: rebeccapurple; */
+    width: 100%;
+    padding: 10px;
+}
+
+.best {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 20px;
+    grid-auto-rows: minmax(50px, auto);
+}
+.best li {
+    color: rebeccapurple;
+    padding: 20px;
+    border: 1px solid rebeccapurple;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.2 ease;
+}
+.best li:hover {
+    color: white;
+    padding: 20px;
+    background-color: rebeccapurple;
+    font-weight: bold;
+    border-radius: 5px;
+}

@@ -1,0 +1,195 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+    text-decoration: none;
+    /* list-style-type: none; */
+    font-family: 'Courier New', Courier, monospace;
+}
+html, body {
+    width: 100%;
+    height: 100vh;
+}
+
+/* index */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    height: 10vh;
+    border-bottom: 2px solid rebeccapurple;
+}
+.navbar div h2 span {
+    color: rebeccapurple;
+    font-weight: bold;
+}
+.navbar div a {
+    text-decoration: none;
+    border: 2px solid rebeccapurple;
+    padding: 5px 10px;
+    font-weight: bold;
+    color: rebeccapurple;
+    cursor: pointer;
+}
+.navbar div a:hover {
+    background-color: rebeccapurple;
+    color: white;
+}
+.home_content {
+    background: url('../images/background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.center {
+    height: 90vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.about_content {
+    width: 90%;
+    margin: 0% auto;
+    padding: 20px;
+    color: white;
+}
+.about_content h1 {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+.login_content {
+    margin: 10px;
+    width: 50%;
+    padding: 20px;
+    border-radius: 10px;
+}
+form h1 {
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+}
+.form_div {
+    width: 100%;
+    display: flex;
+    margin: 20px;
+}
+.form_div span {
+    background-color: rebeccapurple;
+    padding: 10px;
+    font-size: 25px;
+    color: white;
+    border-radius: 5px 0px 0px 5px;
+}
+.form_div input {
+    width: 90%;
+    padding: 15px;
+    font-size: 20px;
+    outline: none;
+    border: transparent;
+    border-radius: 0px 5px 5px 0px;
+}
+.form_div input[type='submit'] {
+    font-weight: bold;
+    cursor: pointer;
+    color: rebeccapurple;
+}
+.form_div input[type='submit']:hover {
+    background-color: rgb(99, 43, 155);
+    color: white;
+}
+
+/* register */
+.register_content {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../images/background.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.register_content form {
+    height: 90vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.reg_center {
+    width: 90%;
+    margin: 5% auto;
+    display: flex;
+    justify-content: space-between;
+}
+.reg_center .left, .reg_center .right {
+    width: 50%;
+}
+.reg_btn {
+    width: 50%;
+    margin: 0% auto;
+}
+.reg_btn input{
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: rebeccapurple;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+    font-size: 20px;
+    border: transparent;
+    transition: 0.2s all ease;
+}
+.reg_btn input:hover {
+    background-color: rgb(91, 27, 155);
+}
+.reg_div {
+    display: flex;
+    margin: 10px;
+}
+.reg_div span {
+    padding: 10px;
+    background-color: rebeccapurple;
+    color: white;
+    outline: none;
+    border: transparent;
+}
+.reg_div input, .reg_div select {
+    width: 90%;
+    outline: none;
+    padding: 10px;
+    font-size: 20px;
+    border: transparent;
+}
+.msg {
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .reg_center {
+        width: 90%;
+        margin: 5% auto;
+        display: block;
+    }
+    .reg_center .left, .reg_center .right {
+        width: 100%;
+    }
+}

@@ -1,0 +1,41 @@
+.predict-form {
+    background-color: rebeccapurple;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+}
+.form-div, .form-div-submit {
+    display: flex;
+    padding: 10px;
+    justify-content: space-evenly;
+}
+.form-div label {
+    width: 30%;
+    color: white;
+}
+.form-div input, .form-div select {
+    width: 70%;
+    padding: 10px;
+    outline: none;
+    border: 0;
+    font-size: 1rem;
+}
+.form-div-submit input {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.form-div-submit input[type='reset'] {
+    background-color: #eeeeee;
+    color: black;
+    outline: 0;
+    border: 0;
+    font-weight: bold;
+}
+.form-div-submit input[type='submit'] {
+    background-color: green;
+    color: white;
+    outline: 0;
+    border: 0;
+    font-weight: bold;
+}

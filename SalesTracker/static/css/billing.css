@@ -1,0 +1,38 @@
+.billing_content {
+    margin: 5% auto;
+}
+.billing_table {
+    background-color: #eeeeee;
+    padding: 10px;
+    border-radius: 5px;
+}
+.billing_table_head {
+    display: flex;
+    justify-content: space-between;
+}
+.billing_table_head input {
+    padding: 10px;
+    outline: 0;
+    border: 0;
+    font-size: 1rem;
+    min-width: 40%;
+}
+.billing_table_footer {
+    text-align: center;
+}
+.billing_table_footer  input {
+    outline: 0;
+    border: 0;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.billing_table_footer input[type='submit'] {
+    background-color: green;
+    color: white;
+}
+.billing_table_footer input[type='reset'] {
+    background-color: white;
+}

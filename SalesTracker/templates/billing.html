@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing | Sales Tracker</title>
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <link rel="stylesheet" href="../static/css/billing.css">
+    <link rel="stylesheet" href="../static/css/account.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+</head>
+<body>
+    <!-- <h1>Dashboard</h1>
+    <h3>Logged in : <strong>{{session.name}} | <a href="{{ url_for('logout') }}"> Logout</h3> -->
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">SalesTracker</h3>
+            <label for="sidebar-toggle" class="ti-menu-alt" style="cursor: pointer;"></label>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="/dashboard" id="dashboard_btn" onclick=showDashboard()>
+                        <span class="ti-home"></span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/statistics" id="statistics_btn" onclick=showStatistics()>
+                        <span class="ti-pulse"></span>
+                        <span>Statistics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/billing" class="help_btn" onclick=showBilling()>
+                        <span class="ti-shopping-cart-full"></span>
+                        <span>Billing</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/predict" class="predict_btn" onclick=showPredict()>
+                        <span class="ti-bar-chart-alt"></span>
+                        <span>Predict</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/help" class="help_btn" onclick=showPredict()>
+                        <span class="ti-help"></span>
+                        <span>Help</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/account" class="account_btn" onclick=showAccount()>
+                        <span class="ti-settings"></span>
+                        <span>Account</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <span class="ti-shift-right"></span>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-content">
+        <header>
+            <div class="search-wrapper">
+                <span class="ti-search"></span>
+                <input type="search" placeholder="Search">
+            </div>
+        </header>
+        <main>
+            <h2 class="dash-title">Billing</h2>
+            {% block content %}
+            <div class="billing_content">
+                <div class="billing_table">
+                    <form action="{{ url_for('saveorder') }}" method="POST" autocomplete="off">
+                        <div class="billing_table_head">
+                            <!-- <input type="text" name="orderid" value="{{orderid}}" readonly> -->
+                            <!-- <input type="text" placeholder="Consumer Name" name="consumername" required> -->
+                        </div>
+                        <div class="billing_table_body">
+                            <div class="account_item">
+                                <h1>Order Details</h1>
+                                <h3><a href="javascript:void(0);" id="orderpopupLink">Add Items</a></h3>
+                                <div class="account_item_inner">
+                                    {% if data == "None" %}
+                                    <p>Add items to view</p>
+                                    {% else %}
+                                    <table>
+                                        <thead>
+                                            <tr>  
+                                                <th>Name</th>
+                                                <th>Quantity</th>
+                                                <th>MRP</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for item in data %}
+                                            <tr>
+                                                <td>{{item['name']}}</td>
+                                                <td>{{item['quantity']}} {{item['unit']}}</td>
+                                                <td>{{item['total_mrp']}}</td>
+                                                <td style="text-align: center;"><span class="ti-pencil" title="Edit" style="cursor: pointer; color: green;"></span> <span class="ti-trash" title="Delete" style="cursor: pointer; color: red;"></span></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="billing_table_footer">
+                                <a href="/reset"><input type="reset"></a>
+                                <input type="submit" value="Save">
+                            </div>
+                            {% endif %}
+                        </div>
+                    </form>
+                    <!-- Modal popup box -->
+                    <div id="orderpopupBox" class="mpopup">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span class="close_order">×</span>
+                                <h2>Add Item Details</h2>
+                            </div>
+                            <form action="{{ url_for('addorder') }}" method="POST" autocomplete="off">
+                                <div class="modal-body">
+                                    <div>
+                                        <Label>Item Name</Label>
+                                        <select name="itemname" required>
+                                            {% for item in available_items %}
+                                            <option value="{{item['name']}}">{{item['name']}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <Label>Item Count</Label>
+                                        <input type="number" name="itemcount" placeholder="Item Count" required>                                
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit">Add Item</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+        </main>
+    </div>
+</body>
+<script src="../static/script/billingscript.js"></script>
+</html>

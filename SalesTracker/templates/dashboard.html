@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Sales Tracker</title>
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+<body>
+    <!-- <h1>Dashboard</h1>
+    <h3>Logged in : <strong>{{session.name}} | <a href="{{ url_for('logout') }}"> Logout</h3> -->
+    <input type="checkbox" id="sidebar-toggle" style="cursor: pointer;">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">SalesTracker</h3>
+            <label for="sidebar-toggle" class="ti-menu-alt"></label>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="/dashboard">
+                        <span class="ti-home"></span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/statistics">
+                        <span class="ti-pulse"></span>
+                        <span>Statistics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/billing" class="help_btn" onclick=showBilling()>
+                        <span class="ti-shopping-cart-full"></span>
+                        <span>Billing</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/predict">
+                        <span class="ti-bar-chart-alt"></span>
+                        <span>Predict</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/help">
+                        <span class="ti-help"></span>
+                        <span>Help</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/account">
+                        <span class="ti-settings"></span>
+                        <span>Account</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <span class="ti-shift-right"></span>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-content">
+        <header>
+            <div class="search-wrapper">
+                <span class="ti-search"></span>
+                <input type="search" placeholder="Search">
+            </div>
+        </header>
+        <main>
+            <h2 class="dash-title">Dashboard</h2>
+            <div class="dash-inner">
+                <h2>My Items</h2>
+                <div class="dash-inner-items">
+                    {% if data == "None" %}
+                        <p>Add items to view</p>
+                        {% else %}
+                        <table>
+                            <thead>
+                                <tr>  
+                                    <th>Item Name</th>
+                                    <th>Actual Sales/Day</th>
+                                    <th>Sales/Day (Approx.)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                {% for item in data %}
+                                <tr>
+                                    <td>{{item['name']}}</td>
+                                    <td>{{item['actual']}}</td>
+                                    <td>{{item['predict']}}</td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                        {% endif %}
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics | Sales Tracker</title>
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <link rel="stylesheet" href="../static/css/statistics.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+</head>
+<body>
+    <!-- <h1>Dashboard</h1>
+    <h3>Logged in : <strong>{{session.name}} | <a href="{{ url_for('logout') }}"> Logout</h3> -->
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">SalesTracker</h3>
+            <label for="sidebar-toggle" class="ti-menu-alt" style="cursor: pointer;"></label>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="/dashboard" id="dashboard_btn" onclick=showDashboard()>
+                        <span class="ti-home"></span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/statistics" id="statistics_btn" onclick=showStatistics()>
+                        <span class="ti-pulse"></span>
+                        <span>Statistics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/billing" class="help_btn" onclick=showBilling()>
+                        <span class="ti-shopping-cart-full"></span>
+                        <span>Billing</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/predict" class="predict_btn" onclick=showPredict()>
+                        <span class="ti-bar-chart-alt"></span>
+                        <span>Predict</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/help" class="help_btn" onclick=showPredict()>
+                        <span class="ti-help"></span>
+                        <span>Help</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/account" class="account_btn" onclick=showAccount()>
+                        <span class="ti-settings"></span>
+                        <span>Account</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <span class="ti-shift-right"></span>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-content">
+        <header>
+            <div class="search-wrapper">
+                <span class="ti-search"></span>
+                <input type="search" placeholder="Search">
+            </div>
+        </header>
+        <main>
+            <h2 class="dash-title">Statistics</h2>
+            <div class="statistics_content">
+                {% if data == "None" %}
+                    <p>Add items to view</p>
+                {% else %}
+                <div class="dash-inner">
+                    <h2>Items Relationships</h2>
+                    <p>Make these items closer to earn more revenue</p>
+                    <ul>
+                        {% for item in data %}
+                        <li>{{item}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
